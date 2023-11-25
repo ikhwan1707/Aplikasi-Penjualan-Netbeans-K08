@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lab4/Documents/NetBeansProjects/penjualan_barang_controllers/penjualan_barang_controllers/src/GUI/menuOfficers.java</file>
-            <file>file:/C:/Users/lab4/Documents/NetBeansProjects/penjualan_barang_controllers/penjualan_barang_controllers/src/GUI/menuPenjualan.java</file>
-            <file>file:/C:/Users/lab4/Documents/NetBeansProjects/penjualan_barang_controllers/penjualan_barang_controllers/src/GUI/menuItems.java</file>
+            <file>file:/C:/Users/iLumniX/Documents/NetBeansProjects/Aplikasi-Penjualan-Netbeans-K08/src/main.java</file>
+            <file>file:/C:/Users/iLumniX/Documents/NetBeansProjects/Aplikasi-Penjualan-Netbeans-K08/src/Controllers/BarangMasukController.java</file>
+            <file>file:/C:/Users/iLumniX/Documents/NetBeansProjects/Aplikasi-Penjualan-Netbeans-K08/src/Controllers/PenjualanController.java</file>
+            <file>file:/C:/Users/iLumniX/Documents/NetBeansProjects/Aplikasi-Penjualan-Netbeans-K08/src/Controllers/BarangController.java</file>
+            <file>file:/C:/Users/iLumniX/Documents/NetBeansProjects/Aplikasi-Penjualan-Netbeans-K08/src/GUI/menuUtama.java</file>
+            <file>file:/C:/Users/iLumniX/Documents/NetBeansProjects/Aplikasi-Penjualan-Netbeans-K08/src/GUI/menuBarangMasuk.java</file>
+            <file>file:/C:/Users/iLumniX/Documents/NetBeansProjects/Aplikasi-Penjualan-Netbeans-K08/src/GUI/menuPenjualan.java</file>
         </group>
     </open-files>
 </project-private>

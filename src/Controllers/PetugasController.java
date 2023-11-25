@@ -139,6 +139,7 @@ public class PetugasController {
         } catch (SQLException e) {
             System.out.print("\n{\n \tCode\t: 500\n \tError\t: Tidak dapat tersambung dengan Controller Petugas\n \tMessage\t: " + e.getMessage() + "\n}\n");
         }
+        System.out.print(dataPetugas[1]);
         return dataPetugas;
     }
 

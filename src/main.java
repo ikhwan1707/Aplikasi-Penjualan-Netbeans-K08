@@ -212,6 +212,15 @@ public class main {
 //                "\nKode Barang\t: " + data[6]  
 //        );
 //
+        List<String[]> data = new ArrayList<>();
+        String a = "KB001";
+        String b = "KB002";
+        String[] c = {a, b};
+        data.add(c);
+        for (String[] items : penjualan.validasi(data)) {
+            System.out.print(items[0]);
+        }
+//
 //      Controller penjualan   
     }
 }

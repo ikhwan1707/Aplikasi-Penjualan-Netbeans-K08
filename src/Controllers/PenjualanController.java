@@ -19,6 +19,8 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 import Connection.db;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -79,8 +81,9 @@ public class PenjualanController {
         return noFaktur;
     }
 
-    public List<String[]> mencariNoFaktur(String noFaktur) {
-        List<String[]> dataPenjualan = new ArrayList<>();
+    public Boolean mencariNoFaktur(String noFaktur) {
+        Boolean dataPenjualan = false;
+        String data = null;
         try {
             String query = "SELECT a.NoFaktur, a.TglPenjualan, a.IDPetugas, b.NamaPetugas "
                     + "FROM tblpenjualan AS a "
@@ -91,12 +94,7 @@ public class PenjualanController {
                 ps.setString(1, noFaktur);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
-                        String NoFaktur = rs.getString("NoFaktur");
-                        String TglPenjualan = rs.getString("TglPenjualan");
-                        String IdPetugas = rs.getString("IDPetugas");
-                        String NamaPetugas = rs.getString("NamaPetugas");
-                        String[] data = {NoFaktur, TglPenjualan, IdPetugas, NamaPetugas};
-                        dataPenjualan.add(data);
+                        data = rs.getString("NoFaktur");
                     }
                     rs.close();
                 }
@@ -106,6 +104,11 @@ public class PenjualanController {
         } catch (SQLException e) {
             System.out.print(e.getMessage());
         }
+
+        if (data != null) {
+            dataPenjualan = true;
+        }
+
         return dataPenjualan;
     }
 
@@ -124,7 +127,7 @@ public class PenjualanController {
                     while (r.next()) {
                         String noFaktur = r.getString("NoFaktur");
                         try (PreparedStatement ps = cn.prepareStatement(queryDetail)) {
-                        ps.setString(1, noFaktur);
+                            ps.setString(1, noFaktur);
                             try (ResultSet rs = ps.executeQuery()) {
 
                                 List<String> detail = new ArrayList<>();
@@ -137,7 +140,7 @@ public class PenjualanController {
                                 for (String items : detail) {
                                     namaBarang.append(items).append(", ");
                                 }
-                                
+
                                 if (namaBarang.length() > 0) {
                                     namaBarang.setLength(namaBarang.length() - 2);
                                 }
@@ -148,9 +151,9 @@ public class PenjualanController {
                                 String sisa = r.getString("Sisa");
                                 String total = r.getString("Total");
                                 String[] data = {noFaktur, namaBarang.toString(), tanggal, namaPetugas, bayar, sisa, total};
-                                
+
                                 dataPenjualan.add(data);
-                                
+
                                 rs.close();
                             }
                             ps.close();
@@ -193,7 +196,7 @@ public class PenjualanController {
                     ps.executeUpdate();
                     ps.close();
                 }
-                
+
                 try (PreparedStatement psc = cn.prepareStatement(checkStok)) {
                     psc.setString(1, v[0]);
                     try (ResultSet rsc = psc.executeQuery()) {
@@ -202,7 +205,7 @@ public class PenjualanController {
                             try (PreparedStatement pss = cn.prepareStatement(queryStok)) {
                                 pss.setString(1, Integer.toString(updateStok));
                                 pss.setString(2, v[0]);
-                                
+
                                 pss.executeUpdate();
                                 pss.close();
                             }
@@ -236,7 +239,7 @@ public class PenjualanController {
             System.out.print(e.getMessage());
         }
     }
-    
+
     public List<String[]> show(String noFaktur) {
         List<String[]> dataPenjualan = new ArrayList<>();
 
@@ -252,7 +255,7 @@ public class PenjualanController {
                 try (ResultSet r = p.executeQuery()) {
                     while (r.next()) {
                         try (PreparedStatement ps = cn.prepareStatement(queryDetail)) {
-                        ps.setString(1, noFaktur);
+                            ps.setString(1, noFaktur);
                             try (ResultSet rs = ps.executeQuery()) {
 
                                 List<String> detail = new ArrayList<>();
@@ -265,21 +268,20 @@ public class PenjualanController {
                                 for (String items : detail) {
                                     namaBarang.append(items).append(", ");
                                 }
-                                
+
                                 if (namaBarang.length() > 0) {
                                     namaBarang.setLength(namaBarang.length() - 2);
                                 }
 
-                                
                                 String tanggal = r.getString("TglPenjualan");
                                 String namaPetugas = r.getString("NamaPetugas");
                                 String bayar = r.getString("Bayar");
                                 String sisa = r.getString("Sisa");
                                 String total = r.getString("Total");
                                 String[] data = {noFaktur, namaBarang.toString(), tanggal, namaPetugas, bayar, sisa, total};
-                                
+
                                 dataPenjualan.add(data);
-                                
+
                                 rs.close();
                             }
                             ps.close();
@@ -294,5 +296,42 @@ public class PenjualanController {
         }
 
         return dataPenjualan;
+    }
+
+    public List<String[]> validasi(List<String[]> data) {
+        List<String[]> barang = new ArrayList<>();
+        StringBuilder placeholders = new StringBuilder();
+
+        for (String[] items : data) {
+            placeholders.append("?, ");
+        }
+
+        if (placeholders.length() > 0) {
+            placeholders.setLength(placeholders.length() - 2);
+        }
+
+        String query = "SELECT * FROM tblbarang WHERE KodeBarang NOT IN (" + placeholders + ")";
+
+        try {
+            try (PreparedStatement p = cn.prepareStatement(query)) {
+                int index = 1;
+                for (String[] items : data) {
+                    String result = (Arrays.toString(items)).replaceAll("\\[([^\\]]*)\\]", "$1");
+                    p.setString(index++, result);
+                }
+
+                try (ResultSet r = p.executeQuery()) {
+                    while (r.next()) {
+                        String[] dataDetail = {r.getString("KodeBarang")};
+                        barang.add(dataDetail);
+                    }
+                }
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return barang;
     }
 }
