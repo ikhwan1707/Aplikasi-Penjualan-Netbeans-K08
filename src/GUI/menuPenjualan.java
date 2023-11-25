@@ -1112,8 +1112,9 @@ public class menuPenjualan extends javax.swing.JPanel {
         cbayar.setText("");
         cTotal.setText("");
         cSisa.setText("");
+        cSubtotal.setText("");
         
-        detail = null;
+        detail.removeAll(detail);
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
