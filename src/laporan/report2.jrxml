@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db1f4e0c-831d-48f0-a851-44ff6fa8f739">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select*from tblbarang]]>
+	</queryString>
+	<field name="KodeBarang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NamaBarang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KodeJenis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HargaNet" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HargaJual" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Stok" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="41" width="92" height="20" uuid="eeb5425d-b3de-40df-abf8-825751e9023f"/>
+				<text><![CDATA[KodeBarang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="41" width="92" height="20" uuid="008c62f2-b149-4906-9e3c-464d37e17078"/>
+				<text><![CDATA[NamaBarang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="41" width="92" height="20" uuid="ef9639fb-628d-4d79-9bcf-835fb01ad71c"/>
+				<text><![CDATA[KodeJenis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="41" width="92" height="20" uuid="09fccf02-c46a-4847-a82b-df2ebf16d85a"/>
+				<text><![CDATA[HargaNet]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="41" width="92" height="20" uuid="83624a4d-6316-454a-9c64-2d154ce907ae"/>
+				<text><![CDATA[HargaJual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="462" y="41" width="92" height="20" uuid="ae7747cf-7bcc-4fce-b4ed-e842009cc5e0"/>
+				<text><![CDATA[Stok]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="92" height="20" uuid="953961fa-056a-4a32-a0fb-4347e51b40ff"/>
+				<textFieldExpression><![CDATA[$F{KodeBarang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="0" width="92" height="20" uuid="c8e673e1-3c7b-4ed0-b3c9-aa4deba56f5a"/>
+				<textFieldExpression><![CDATA[$F{KodeJenis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="0" width="92" height="20" uuid="9e9448d3-b0a8-4f6a-b4e5-4df1c37b253d"/>
+				<textFieldExpression><![CDATA[$F{HargaNet}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="0" width="92" height="20" uuid="ccd2ac75-0065-47ea-bb95-f1f88aef7a57"/>
+				<textFieldExpression><![CDATA[$F{HargaJual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="497" y="0" width="92" height="20" uuid="32b63f9f-3799-4915-abf0-dd3f3688d596"/>
+				<textFieldExpression><![CDATA[$F{Stok}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="0" width="92" height="20" uuid="45e16c3e-1891-4ee9-a9de-9018aef932fb"/>
+				<textFieldExpression><![CDATA[$F{NamaBarang}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
